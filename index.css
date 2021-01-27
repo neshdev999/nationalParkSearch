@@ -197,7 +197,7 @@ form div {
     box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
 
-.submitButtonstyled :focus {
+.submitButtonstyled:focus {
     outline: lightskyblue solid 4px;
 }
 
@@ -224,6 +224,24 @@ form div {
 .checkboxItem {
     margin: 2px;
     padding: 2px;
+}
+
+
+/* Labels for checked inputs */
+
+input:checked+label {
+    color: red;
+}
+
+
+/* Checkbox element, when checked */
+
+input[type="checkbox"]:checked {
+    box-shadow: 0 0 0 3px hotpink;
+}
+
+input[type="checkbox"]:focus {
+    outline: 2px solid blueviolet;
 }
 
 .statesList>div>label>input {

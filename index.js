@@ -1,11 +1,9 @@
 /* Global Variables */
-
 const userApiKey = 'xNbXel9KHm9MZpOzdV2riVYIxBBCMlXNguJBHa6u';
-// const userApiKey = 'xNb';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
+/* Generates Park data Full Name, Description, Web URL and address */
 function generateDefaultOutputSection(responseJson) {
-    // let outputResponseLength = parseInt(responseJson['limit']);
     let outputResponseLength = responseJson.data.length;
     let parkFullNameArray = [];
     let parkDescArray = [];
@@ -29,7 +27,6 @@ function generateDefaultOutputSection(responseJson) {
         addressPostalCodeArray.push(responseJson.data[i].addresses[0]['postalCode']);
     }
 
-
     for (let j = 0; j < outputResponseLength; j++) {
         $('#outputParkList').append(`<div class="parkOutputStylesHolder"><div><div class="parkNameIndicatorStyles">Park [${j+1}]</div> <div class="parkName"> ${parkFullNameArray[j]}</div>
         <div class="parkDesc">${parkDescArray[j]}</div>
@@ -49,13 +46,13 @@ function generateDefaultOutputSection(responseJson) {
     $('#outputParkList').removeClass('hidden');
 }
 
-
-
+/* Format query parameters */
 function formatQueryParams(params) {
     const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
 }
 
+/* Fetch data for given states and maximum results */
 function getParksData(countryCodes, maxResults) {
     const params = {
         api_key: userApiKey,
@@ -74,7 +71,6 @@ function getParksData(countryCodes, maxResults) {
         })
         .then(responseJson => {
             generateDefaultOutputSection(responseJson);
-            console.log(JSON.stringify(responseJson));
         })
         .catch(err => {
             $('#serverErrorReportContainer').text(`Server has responded with error 😪  : ${err.message} 😫`);
@@ -154,6 +150,7 @@ $(window).bind("load", function() {
         .resize(positionFooter)
 });
 
+/* Clear content on page load */
 function clearContent() {
     // Uncheck all checkboxes on page load    
     $(':checkbox:checked').prop('checked', false);
@@ -164,11 +161,8 @@ function clearContent() {
 
 }
 
-
-
 /* Initialize Application */
 $(function() {
-    console.log('App loaded! Waiting for submit!');
     clearContent();
     getParksData('NC,DC,NY', '10');
     watchForm();
