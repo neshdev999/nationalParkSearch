@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The National Parks Search</title>
+    <title>The National Parks Spotter</title>
 
     <!--CSS-->
     <link href="normalize.css" rel="stylesheet" type="text/css">
@@ -22,20 +22,18 @@
 <body class="bodyStyles">
     <header class="mainHeading">
         <div>
-            <img src="images/icons8-national-park-100.png" alt="national park icon" width="150px" height="150px">
+            <img src="images/national-park-header.png" alt="national park icon" class="mainHeaderImage">
         </div>
         <div>
-            <h1>The National Parks Search</h1>
+            <h1>The National Parks Spotter</h1>
         </div>
     </header>
     <main class="mainStylesHolder">
+        <div class="secondaryHeader">
+            <h2>Search Your Favorite Parks</h2>
+        </div>
         <div class="userInputHolder">
             <form>
-                <!-- <div class="entryBox">
-                    <div>Search Term&nbsp;&nbsp;&nbsp;</div>
-                    <div><input type="text" id="parkSearchTermInput" pattern="[A-Za-z0-9_-]+" required size="20" maxlength="64"></div>
-                    <div><input type="text" id="parkSearchTermInput" pattern="([^\s][A-z0-9À-ž\s]+)" required size="20" maxlength="64"></div>
-                </div> -->
                 <div>
                     <div class="stateListHeader entryBox">US States</div>
                     <div class="statesList">
@@ -93,25 +91,25 @@
                     </div>
                 </div>
                 <div class="entryBox">
-                    <div>Maximum Results&nbsp;&nbsp;&nbsp;</div>
+                    <div>Maximum Parks&nbsp;&nbsp;&nbsp;</div>
                     <div><input type="number" id="parkSearchMaxResultsInput" required min="1" max="468" value="10"></div>
                 </div>
                 <div>
                     <span class="submitButtonHolder">
                         <input class="submitButton submitButtonstyled"
                         type="submit"
-                        value="Search"
+                        value="SEARCH"
                         id="submitButtonId">
                     </span>
                 </div>
             </form>
         </div>
         <div class="userOutputWrapper">
-
             <div class="userOutputHolder">
-                <div class="defaultViewHeader">NC National Parks</div>
-                <div id="outputParkList"></div>
+                <div class="defaultViewHeader">National Parks</div>
+                <div id="outputParkList" class="hidden"></div>
                 <div id="serverErrorReportContainer"></div>
+                <div id="test"></div>
             </div>
         </div>
     </main>

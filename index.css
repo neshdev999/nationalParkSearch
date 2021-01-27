@@ -55,8 +55,21 @@ h2 {
     background-color: antiquewhite;
     background-color: #63BCD0;
     background-color: rgba(102, 188, 207, 0.3);
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.secondaryHeader {
+    text-align: center;
+    margin: 1%;
+    padding: 1%;
+    color: #174E8E;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.mainHeaderImage {
+    width: 100px;
+    height: 100px;
 }
 
 
@@ -73,14 +86,17 @@ h2 {
         margin-left: 5px;
         margin-right: 5px;
     }
+    .mainHeaderImage {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 
 /* Form Styles */
 
-.inputDropDownTitle {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 18px;
+.hidden {
+    display: none;
 }
 
 .userInputHolder {
@@ -101,12 +117,16 @@ form {
     background-color: aliceblue;
     background-color: rgba(143, 33, 42, 0.1);
     border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 form div {
     flex: 1;
-    /* margin: 1%;
-    padding: 1%; */
     margin: 1%;
     padding: 1%;
 }
@@ -121,10 +141,6 @@ form div {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: darkblue;
     font-size: 16px;
-}
-
-#githubUsernameInput {
-    width: 80%;
 }
 
 .defaultViewHeader {
@@ -142,6 +158,8 @@ form div {
 @media screen and (min-width: 992px) {
     form {
         flex-direction: row;
+        margin: 5px;
+        padding: 5px;
     }
     form div {
         margin: 2%;
@@ -153,11 +171,15 @@ form div {
 
 /*Form Button Styles */
 
+.submitButton {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+}
+
 .submitButtonstyled {
     border: 0;
     line-height: 2.5;
     padding: 0 20px;
-    font-size: 1rem;
     text-align: center;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
@@ -177,6 +199,15 @@ form div {
 
 .submitButtonstyled :focus {
     outline: lightskyblue solid 4px;
+}
+
+
+/* Desktop Screen */
+
+@media screen and (min-width: 992px) {
+    .submitButton {
+        font-size: 20px;
+    }
 }
 
 

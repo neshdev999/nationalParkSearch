@@ -1,6 +1,7 @@
 /* Global Variables */
 
 const userApiKey = 'xNbXel9KHm9MZpOzdV2riVYIxBBCMlXNguJBHa6u';
+// const userApiKey = 'xNb';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 function generateDefaultOutputSection(responseJson) {
@@ -44,15 +45,13 @@ function generateDefaultOutputSection(responseJson) {
                                           <div>${addressPostalCodeArray[j]}</div>
                                           </div>
                                     </div>`);
-
-
     }
+    $('#outputParkList').removeClass('hidden');
 }
 
 
 
 function formatQueryParams(params) {
-    // const queryItems = Object.keys(params).map(key => `${key}=${params[key]}`);
     const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
 }
@@ -78,7 +77,8 @@ function getParksData(countryCodes, maxResults) {
             console.log(JSON.stringify(responseJson));
         })
         .catch(err => {
-            $('#serverErrorReportContainer').text(`Something went wrong : ${err.message}`);
+            $('#serverErrorReportContainer').text(`Server has responded with error 😪  : ${err.message} 😫`);
+            $('#serverErrorReportContainer').css('display', 'block');
         });
 }
 
@@ -91,14 +91,13 @@ function watchForm() {
             $("#outputParkList").empty();
         }
 
-        // make error report field blank
-        $('#serverErrorReportContainer').css('display', 'none');
-        $('#serverErrorReportContainer').text("");
-
         // Hide DefaultView Header
         $('.defaultViewHeader').css('display', 'none');
 
-        // const searchTerm = $('#parkSearchTermInput').val();
+        // make error report field blank
+        $('#serverErrorReportContainer').css('display', 'none');
+        $('#serverErrorReportContainer').empty();
+
         const countryStateCheckboxes = $(".statesList").find("input:checked");
         let selectedCountryCodes = [];
         for (let i = 0; i < countryStateCheckboxes.length; i++) {
@@ -106,32 +105,22 @@ function watchForm() {
             selectedCountryCodes.push(countryStateCheckboxes[stringCurrentVal].value);
         }
         const selectedMaxResults = $('#parkSearchMaxResultsInput').val();
-
         let commaSeperatedCountryCodes = selectedCountryCodes.join(',');
-        // console.log("SelectedMaxResults: " + selectedMaxResults);
-        // console.log(countryStateCheckboxes['0'].value);
-        // console.log(countryStateCheckboxes);
-        // console.log(selectedCountryCodes);
-        // console.log(searchTerm);
-        // console.log(commaSeperatedCountryCodes);
         $('.defaultViewHeader').text(`${commaSeperatedCountryCodes} National Parks`);
         // show DefaultView Header
         $('.defaultViewHeader').css('display', 'block');
-
         getParksData(commaSeperatedCountryCodes, selectedMaxResults);
-
-
     });
 }
 
 /*Footer*/
 
 function generateFooter() {
-    const githubUserFooterBase = githubUserFooter();
-    $('#footer').append(githubUserFooterBase);
+    const parkUserFooterBase = parkUserFooter();
+    $('#footer').append(parkUserFooterBase);
 }
 
-function githubUserFooter() {
+function parkUserFooter() {
     return `<div class="footContain"><div class="footStyles"><span>&nbsp;The National Parks Search Panel&nbsp;&nbsp;<br></span><span>Nesh &copy; ${getCopyRightYear()}</span></div></div>`;
 }
 
@@ -169,14 +158,19 @@ function clearContent() {
     // Uncheck all checkboxes on page load    
     $(':checkbox:checked').prop('checked', false);
     $('#parkSearchMaxResultsInput').val('10');
+    // make error report field blank
+    $('#serverErrorReportContainer').css('display', 'none');
+    $('#serverErrorReportContainer').empty();
+
 }
+
+
 
 /* Initialize Application */
 $(function() {
-
     console.log('App loaded! Waiting for submit!');
     clearContent();
-    getParksData('NC', '5');
+    getParksData('NC,DC,NY', '10');
     watchForm();
     generateFooter();
 });
