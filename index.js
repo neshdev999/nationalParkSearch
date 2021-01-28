@@ -51,7 +51,6 @@ function generateDefaultOutputSection(responseJson) {
 /* Format query parameters */
 function formatQueryParams(params) {
     const queryItems = Object.keys(params).map(key => `${key}=${params[key]}`);
-    //const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
 }
 
