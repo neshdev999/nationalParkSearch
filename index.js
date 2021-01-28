@@ -1,3 +1,5 @@
+"use strict";
+
 /* Global Variables */
 const userApiKey = 'xNbXel9KHm9MZpOzdV2riVYIxBBCMlXNguJBHa6u';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
@@ -48,7 +50,8 @@ function generateDefaultOutputSection(responseJson) {
 
 /* Format query parameters */
 function formatQueryParams(params) {
-    const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+    const queryItems = Object.keys(params).map(key => `${key}=${params[key]}`);
+    //const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
 }
 
